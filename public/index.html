@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager | AWS EC2 App</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">⚙️</span>
+        <div>
+          <div class="brand-name">TaskManager</div>
+          <div class="brand-sub">AWS EC2 · Node.js</div>
+        </div>
+      </div>
+
+      <div class="server-card">
+        <div class="server-dot"></div>
+        <div>
+          <div class="server-label">Server Status</div>
+          <div class="server-value" id="serverStatus">Checking…</div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span id="totalCount">0</span><small>Total</small></div>
+        <div class="stat"><span id="doneCount">0</span><small>Done</small></div>
+        <div class="stat"><span id="pendingCount">0</span><small>Pending</small></div>
+      </div>
+
+      <div class="api-info">
+        <div class="api-title">API Endpoints</div>
+        <div class="endpoint"><span class="method get">GET</span> /api/tasks</div>
+        <div class="endpoint"><span class="method post">POST</span> /api/tasks</div>
+        <div class="endpoint"><span class="method put">PUT</span> /api/tasks/:id</div>
+        <div class="endpoint"><span class="method del">DEL</span> /api/tasks/:id</div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="topbar">
+        <h1>My Tasks</h1>
+        <button class="btn-add" id="openModal">+ Add Task</button>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="pending">Pending</button>
+        <button class="filter" data-filter="done">Done</button>
+        <button class="filter" data-filter="high">🔴 High</button>
+        <button class="filter" data-filter="medium">🟡 Medium</button>
+        <button class="filter" data-filter="low">🟢 Low</button>
+      </div>
+
+      <div id="taskList" class="task-list"></div>
+    </main>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Add New Task</h2>
+        <button class="modal-close" id="closeModal">✕</button>
+      </div>
+      <input type="text" id="taskInput" class="modal-input" placeholder="Task title…"/>
+      <select id="prioritySelect" class="modal-select">
+        <option value="high">🔴 High Priority</option>
+        <option value="medium" selected>🟡 Medium Priority</option>
+        <option value="low">🟢 Low Priority</option>
+      </select>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelBtn">Cancel</button>
+        <button class="btn-save" id="saveBtn">Add Task</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
